@@ -38,11 +38,11 @@
     <input type="checkbox" name="q1" value="d" id="q1d"><label for="q1d">D: Choroba hematologiczna</label><br/>
     <input type="checkbox" name="q1" value="e" id="q1e"><label for="q1e">E: Płonica</label><br/>
     <input type="checkbox" name="q1" value="f" id="q1f"><label for="q1f">F: Zespół Stevensa Johnsona</label><br/>
-    <input type="checkbox" name="q1" value="g" id="q1g"><label for="q1g">G: Wirusowe zapalenie opon
+    <input type="checkbox" name="q1" value="e" id="q1g"><label for="q1g">G: Wirusowe zapalenie opon
     mózgowych</label><br/>
-    <input type="checkbox" name="q1" value="h" id="q1h"><label for="q1h">H: Histiocytoza z komórek
+    <input type="checkbox" name="q1" value="f" id="q1h"><label for="q1h">H: Histiocytoza z komórek
     Langerhansa</label><br/>
-    <input type="checkbox" name="q1" value="i" id="q1i"><label for="q1i">I: Wielokomórkowe zapalenie naczyń</label><br/>
+    <input type="checkbox" name="q1" value="f" id="q1i"><label for="q1i">I: Wielokomórkowe zapalenie naczyń</label><br/>
 </ul>
 
 <button id="results">
@@ -233,13 +233,26 @@
     <input type="hidden" name="_subject" value="Website contact" />
     <textarea id="message" name="message" placeholder="Your message" style="display: none;"></textarea>
     <input type="text" name="_gotcha" style="display:none" />
-    <input type="submit" value="Zakoncz test i wyslij wyniki">
+    <input type="submit" value="Send">
 </form>
 <br>
 <br>
 <br>
 <br>
 <script>
+    String.prototype.escapeDiacritics = function()
+    {
+        return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
+                .replace(/ć/g, 'c').replace(/Ć/g, 'C')
+                .replace(/ę/g, 'e').replace(/Ę/g, 'E')
+                .replace(/ł/g, 'l').replace(/Ł/g, 'L')
+                .replace(/ń/g, 'n').replace(/Ń/g, 'N')
+                .replace(/ó/g, 'o').replace(/Ó/g, 'O')
+                .replace(/ś/g, 's').replace(/Ś/g, 'S')
+                .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
+                .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
+    }
+
     var contactform =  document.getElementById('contactform');
     contactform.setAttribute('action', '//formspree.io/' + 'zuchens' + '@' + 'interia' + '.' + 'pl');
     var val = ""
@@ -250,12 +263,7 @@
             var q2a = document.getElementById('q1b').checked
             var q3a = document.getElementById('q1c').checked
             var q4a = document.getElementById('q1d').checked
-            var q5a = document.getElementById('q1e').checked
-            var q6a = document.getElementById('q1f').checked
-            var q7a = document.getElementById('q1g').checked
-            var q8a = document.getElementById('q1h').checked
-            var q9a = document.getElementById('q1i').checked
-            values = [q1a, q2a, q3a, q4a,q5a, q6a, q7a, q8a,q9a]
+            values = [q1a, q2a, q3a, q4a]
             val = values + '\n'
             $("#message").val(val)
 
@@ -266,29 +274,29 @@
         document.getElementById('results2').onclick = function () {
             $("#wrong").hide();
             var ans = $('#exam').val();
-            ans = ans.replace(/[_\s-]/g, '').toLowerCase()
-            if (ans === "albuminy") {
+            ans = ans.escapeDiacritics().replace(/[_\s-]/g, '').toLowerCase()
+            if (ans.indexOf("albuminy") >= 0) {
                 $("#albuminy").show();
             }
-            else if (ans === "białkocałkowite") {
+            else if (ans.indexOf("bialko") >= 0) {
                 $("#bialko_calkowite").show();
             }
-            else if (ans === "białkocałkowiterozdziałelektroforetyczny") {
+            else if (ans === "bialkocalkowiterozdzialelektroforetyczny" || ans.indexOf("rozdzialelektroforetyczny") >= 0) {
                 $("#bialko_calkowite_rozdzial").show();
             }
-            else if (ans === "ctgłowy" || ans === "mrgłowy") {
+            else if (ans === "ctglowy" || ans === "mrglowy") {
                 $("#ct_glowy").show();
             }
-            else if (ans === "mrgłowyzkontrastem" || ans === "angiomr" || ans === "ctgłowyzkontrastem" || ans === "angioct" || ans === "angioctgłowy") {
+            else if (ans === "mrglowyzkontrastem" || ans === "angiomr" || ans === "ctglowyzkontrastem" || ans === "angioct" || ans === "angioctglowy") {
                 $("#mr_glowy_kont").show();
             }
-            else if (ans === "morfologiakrwi") {
+            else if (ans === "morfologiakrwi" || ans.indexOf("krwi") >= 0 || ans.indexOf("krew") >= 0) {
                 $("#krew").show();
             }
             else if (ans === "ctjamybrzusznej") {
                 $("#ct_brzuch").show();
             }
-            else if (ans === "na" || ans === "na+" || ans === "sód") {
+            else if (ans === "na" || ans === "na+" || ans === "sod") {
                 $("#sod").show();
             }
             else if (ans === "potas" || ans === "k" || ans === "k+") {
@@ -297,40 +305,40 @@
             else if (ans === "chlor" || ans === "cl-" || ans === "cl") {
                 $("#chlor").show();
             }
-            else if (ans === "lipidogram") {
+            else if (ans === "lipidogram"|| ans.indexOf("lipidogram") >= 0 ) {
                 $("#lipidogram").show();
             }
-            else if (ans === "troponiny") {
+            else if (ans === "troponiny"|| ans.indexOf("troponiny") >= 0 ) {
                 $("#troponiny").show();
             }
-            else if (ans === "badanieogólnemoczu") {
+            else if (ans === "badanieogolnemoczu" || ans === "badaniemoczu") {
                 $("#badanie_moczu").show();
             }
             else if (ans === "posiewmoczu") {
                 $("#posiew_moczu").show();
             }
-            else if (ans === "alat") {
+            else if (ans === "alat" || ans.indexOf("alat") >= 0) {
                 $("#alat").show();
             }
-            else if (ans === "bilirubinacałkowita") {
+            else if (ans === "bilirubinacalkowita") {
                 $("#bilirubina_c").show();
             }
-            else if (ans === "bilirubinapośrednia") {
+            else if (ans === "bilirubinaposrednia") {
                 $("#bilirubina_p").show();
             }
-            else if (ans === "bilirubinabezpośrednia") {
+            else if (ans === "bilirubinabezposrednia") {
                 $("#bilirubina_b").show();
             }
-            else if (ans === "kreatynina") {
+            else if (ans === "kreatynina" || ans.indexOf("kreatynina") >= 0) {
                 $("#kreatynina").show();
             }
-            else if (ans === "mocznik") {
+            else if (ans === "mocznik"|| ans.indexOf("mocznik") >= 0) {
                 $("#mocznik").show();
             }
-            else if (ans === "ddimery") {
+            else if (ans === "ddimery"|| ans.indexOf("ddimery") >= 0) {
                 $("#ddimery").show();
             }
-            else if (ans === "glukozawekrwi" || ans === "glukoza") {
+            else if (ans === "glukozawekrwi" || ans.indexOf("glukoza") >= 0) {
                 $("#glukoza").show();
             }
             else if (ans === "usgjamybrzusznej") {
@@ -342,34 +350,35 @@
             else if (ans === "rtgjamybrzusznej") {
                 $("#rtg_brzuch").show();
             }
-            else if (ans === "badanieechokardiograficzne") {
+            else if (ans === "badanieechokardiograficzne"|| ans.indexOf("echokardiograficzne") >= 0||
+                    ans.indexOf("echokardiografia") >= 0) {
                 $("#echokardiograficzne").show();
             }
-            else if (ans === "punkcjalędźwiowa") {
+            else if (ans === "punkcjaledzwiowa"|| ans.indexOf("punkcja") >= 0) {
                 $("#punkcja").show();
             }
-            else if (ans === "gazometriakrwiwłośniczkowej") {
+            else if (ans === "gazometriakrwiwlosniczkowej" || ans.indexOf("gazometria") >= 0) {
                 $("#gazometria").show();
             }
-            else if (ans === "crp") {
+            else if (ans === "crp"|| ans.indexOf("crp") >= 0) {
                 $("#crp").show();
             }
-            else if (ans === "prokalcytonina") {
+            else if (ans === "prokalcytonina"|| ans.indexOf("prokalcytonina") >= 0) {
                 $("#prokalcytonina").show();
             }
-            else if (ans === "ekghr") {
+            else if (ans === "ekghr"|| ans.indexOf("ekghr") >= 0) {
                 $("#ekg_hr").show();
             }
-            else if (ans === "c3") {
+            else if (ans === "c3"|| ans.indexOf("c3") >= 0) {
                 $("#c3").show();
             }
-            else if (ans === "c4") {
+            else if (ans === "c4"|| ans.indexOf("c4") >= 0) {
                 $("#c4").show();
             }
             else if (ans === "ana") {
                 $("#ana").show();
             }
-            else if (ans === "aptt") {
+            else if (ans === "aptt"|| ans.indexOf("aptt") >= 0) {
                 $("#aptt").show();
             }
             else if (ans === "pt") {

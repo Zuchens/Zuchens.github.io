@@ -107,13 +107,22 @@
     <p>białko całkowite rozdział elektroforetyczny: zmniejszona ilość albumin i gamma globulin, wzrost alfa i beta
         globulin</p>
 </div>
+<div id="mr_glowy" style="display: none;">
+    <p>MR głowy - obraz niejednoznaczny, cechy obrzęku mózgu na granicy płata ciemieniowego i potylicznego. Bez
+        cech
+        zwału mózgu i krwotoków . Zaleca się poszerzenie diagnostyki</p>
+</div>
 <div id="ct_glowy" style="display: none;">
-    <p>CT głowy/MR głowy - obraz niejednoznaczny, cechy obrzęku mózgu na granicy płata ciemieniowego i potylicznego. Bez
+    <p>CT głowy - obraz niejednoznaczny, cechy obrzęku mózgu na granicy płata ciemieniowego i potylicznego. Bez
         cech
         zwału mózgu i krwotoków . Zaleca się poszerzenie diagnostyki</p>
 </div>
 <div id="mr_glowy_kont" style="display: none;">
     <p>MR głowy z kontrastem/angio-MR - Rozproszony zakrzep wewnątrz zatoki strzałkowej górnej oraz zaburzenia przepływu
+        w obydwu zatokach poprzecznych. Poza tym bez cech zawału i krwotoków.</p>
+</div>
+<div id="ct_glowy_kont" style="display: none;">
+    <p>CT głowy z kontrastem - Rozproszony zakrzep wewnątrz zatoki strzałkowej górnej oraz zaburzenia przepływu
         w obydwu zatokach poprzecznych. Poza tym bez cech zawału i krwotoków.</p>
 </div>
 <div id="krew" style="display: none;">
@@ -238,7 +247,7 @@
 <br>
 <div id="answer3" style="display: none;">
     <p>Prawidłowe rozpoznanie: zespół nerczycowy powikłany zakrzepicą zatoki strzałkowej górnej i poprzecznych.</p>
-    <p>Najważniejsze badania: badanie ogólne moczu, albuminy, białko całkoite, lipidogram, MR głowy z kontrastem, CT głowy z kontrastem</p>
+    <p>Najważniejsze badania: badanie ogólne moczu, albuminy, białko całkowite, lipidogram, MR głowy z kontrastem, CT głowy z kontrastem</p>
 </div>
 
 <br>
@@ -309,11 +318,17 @@
             else if (ans === "bialkocalkowiterozdzialelektroforetyczny" || ans.indexOf("rozdzialelektroforetyczny") >= 0) {
                 $("#bialko_calkowite_rozdzial").show();
             }
-            else if (ans === "ctglowy" || ans === "mrglowy") {
+            else if (ans === "ctglowy") {
                 $("#ct_glowy").show();
             }
-            else if (ans === "mrglowyzkontrastem" || ans === "angiomr" || ans === "ctglowyzkontrastem" || ans === "angioct" || ans === "angioctglowy") {
+            else if (ans === "mrglowy") {
+                $("#mr_glowy").show();
+            }
+            else if (ans === "mrglowyzkontrastem" || ans === "angiomr") {
                 $("#mr_glowy_kont").show();
+            }
+            else if (ans === "ctglowyzkontrastem" || ans === "angioct" || ans === "angioctglowy") {
+                $("#ct_glowy_kont").show();
             }
             else if (ans === "morfologiakrwi" || ans.indexOf("krwi") >= 0 || ans.indexOf("krew") >= 0) {
                 $("#krew").show();

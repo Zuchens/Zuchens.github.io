@@ -1,1 +1,84 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<p>Description 1</p>
+<p class="question">1. What is the answer to this question?</p>
+
+<ul class="answers" id="mult">
+    <input type="checkbox" name="q1" value="a" id="q1a"><label for="q1a">Answer 1</label><br/>
+    <input type="checkbox" name="q1" value="b" id="q1b"><label for="q1b">Answer 2</label><br/>
+    <input type="checkbox" name="q1" value="c" id="q1c"><label for="q1c">Answer 3</label><br/>
+    <input type="checkbox" name="q1" value="d" id="q1d"><label for="q1d">Answer 4</label><br/>
+</ul>
+
+<button id="results">
+    Show me the answers!
+</button>
+
+<div id="answer1" style="display: none;">
+    <p>
+        <strong>Question 1:</strong> The correct answer is the <strong>Answer 1</strong>.</p>
+</div>
+
+<p>Description 2</p>
+
+<p class="question">1. What is the answer to this question?</p>
+
+<div>
+    Jakie badania zlecisz? : <input type="text" id="exam" name="exam" value=""><br>
+    <button id="results2">
+        Pokaż badania
+    </button>
+</div>
+
+<div id="badanie_krwi" style="display: none;">
+    <p>Wynik badania krwi: 100mg narkotyków</p>
+</div>
+<div id="badanie_temp" style="display: none;">
+    <p>Wynik badania temperatury: 100 stopni C</p>
+</div>
+<div id="wrong" style="display: none;">
+    <p>Nie mamy takiego badania</p>
+</div>
+
+<div>
+    Jaką diagnozę podejmujesz : <input type="text" id="check" name="check" value=""><br>
+    <button id="results3">
+        Zakończ test
+    </button>
+</div>
+<div id="answer3" style="display: none;">
+    <p>Poprawną diagnozą jest rak</p>
+</div>
+<script>
+    $(document).ready(function()
+    {    document.getElementById('results').onclick = function() {
+                $("#answer1").show();
+        }});
+
+    $(document).ready(function()
+    {    document.getElementById('results2').onclick = function() {
+        $("#wrong").hide();
+        var ans = $('#exam').val();
+        if (ans ==="badanie krwi"){
+            $("#badanie_krwi").show();
+        }
+        else if (ans ==="temperatura"){
+            $("#badanie_temp").show();
+        }
+        else{
+            $("#wrong").show();
+        }
+    }});
+    $(document).ready(function()
+    {    document.getElementById('results3').onclick = function() {
+        $("#answer3").show();
+    }});
+</script>
+</body>
+</html>

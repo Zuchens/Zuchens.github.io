@@ -56,12 +56,12 @@
     <p>Poprawną diagnozą jest rak</p>
 </div>
 
-<form id="contactform" action="//formspree.io/zuchens@interia.pl" method="POST">
-    <input type="text" name="text" placeholder="Your name">
-    <input type="email" name="email" placeholder="Your email">
-    <textarea id="message" name="message" placeholder="Your message"></textarea>
-    <input type="submit" name="submit" value="Zakoncz test i wyslij informacje">
+<form method="POST" action="http://formspree.io/zuchens@interia.pl">
+  <input type="email" name="email" placeholder="Your email">
+  <textarea id="message" name="message" placeholder="Your message"></textarea>
+  <button type="submit">Send</button>
 </form>
+
 <script>
     var val = ""
     $(document).ready(function()

@@ -49,36 +49,59 @@
 <div>
     Jaką diagnozę podejmujesz : <input type="text" id="check" name="check" value=""><br>
     <button id="results3">
-        Zakończ test
+        Sprawdz diagnoze
     </button>
 </div>
 <div id="answer3" style="display: none;">
     <p>Poprawną diagnozą jest rak</p>
 </div>
+
+<form method="POST" action="http://formspree.io/zuchens@interia.pl">
+    <input type="email" name="email" placeholder="Your email">
+    <textarea id="message" name="message" placeholder="None"></textarea>
+    <button type="submit">Zakoncz test i wyslij informacje</button>
+</form>
+
 <script>
+    var val = ""
     $(document).ready(function()
     {    document.getElementById('results').onclick = function() {
                 $("#answer1").show();
+                var q1a = document.getElementById('q1a').checked
+                var q2a = document.getElementById('q1b').checked
+                var q3a = document.getElementById('q1c').checked
+                var q4a = document.getElementById('q1d').checked
+                values = [q1a,q2a,q3a,q4a]
+                val =  values + '\n'
+                $("#message").val(val)
+
         }});
 
     $(document).ready(function()
-    {    document.getElementById('results2').onclick = function() {
+    {   document.getElementById('results2').onclick = function() {
         $("#wrong").hide();
         var ans = $('#exam').val();
         if (ans ==="badanie krwi"){
             $("#badanie_krwi").show();
+            val = val + ans + '\n'
         }
         else if (ans ==="temperatura"){
             $("#badanie_temp").show();
+            val = val + ans + '\n'
         }
         else{
             $("#wrong").show();
         }
+        $("#message").val(val)
     }});
     $(document).ready(function()
     {    document.getElementById('results3').onclick = function() {
         $("#answer3").show();
+        var ans = $('#check').val();
+        val = val + ans
+        $("#message").val(val)
     }});
+
 </script>
 </body>
 </html>

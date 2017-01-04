@@ -38,11 +38,11 @@
     <input type="checkbox" name="q1" value="d" id="q1d"><label for="q1d">D: Choroba hematologiczna</label><br/>
     <input type="checkbox" name="q1" value="e" id="q1e"><label for="q1e">E: Płonica</label><br/>
     <input type="checkbox" name="q1" value="f" id="q1f"><label for="q1f">F: Zespół Stevensa Johnsona</label><br/>
-    <input type="checkbox" name="q1" value="e" id="q1g"><label for="q1g">G: Wirusowe zapalenie opon
+    <input type="checkbox" name="q1" value="g" id="q1g"><label for="q1g">G: Wirusowe zapalenie opon
     mózgowych</label><br/>
-    <input type="checkbox" name="q1" value="f" id="q1h"><label for="q1h">H: Histiocytoza z komórek
+    <input type="checkbox" name="q1" value="h" id="q1h"><label for="q1h">H: Histiocytoza z komórek
     Langerhansa</label><br/>
-    <input type="checkbox" name="q1" value="f" id="q1i"><label for="q1i">I: Wielokomórkowe zapalenie naczyń</label><br/>
+    <input type="checkbox" name="q1" value="i" id="q1i"><label for="q1i">I: Wielokomórkowe zapalenie naczyń</label><br/>
 </ul>
 
 <button id="results">
@@ -250,7 +250,12 @@
             var q2a = document.getElementById('q1b').checked
             var q3a = document.getElementById('q1c').checked
             var q4a = document.getElementById('q1d').checked
-            values = [q1a, q2a, q3a, q4a]
+            var q5a = document.getElementById('q1e').checked
+            var q6a = document.getElementById('q1f').checked
+            var q7a = document.getElementById('q1g').checked
+            var q8a = document.getElementById('q1h').checked
+            var q9a = document.getElementById('q1i').checked
+            values = [q1a, q2a, q3a, q4a,q5a, q6a, q7a, q8a,q9a]
             val = values + '\n'
             $("#message").val(val)
 
